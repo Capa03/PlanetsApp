@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity implements AdapterPlanet.Ada
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = new RecyclerView(this);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         this.adapterPlanet = new AdapterPlanet(this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(this.adapterPlanet);

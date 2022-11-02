@@ -5,6 +5,7 @@ public class Planet {
     private int id;
     private String name;
     private String image;
+    private String description;
 
     public Planet(int id, String name, String image) {
         this.id = id;
@@ -34,5 +35,13 @@ public class Planet {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

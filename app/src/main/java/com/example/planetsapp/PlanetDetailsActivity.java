@@ -25,7 +25,7 @@ public class PlanetDetailsActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
     private Context context = this;
-    private Details details;
+    private Planet planet;
     private TextView planetName;
     private TextView planetDescription;
     private ImageView planetImage;
@@ -39,19 +39,19 @@ public class PlanetDetailsActivity extends AppCompatActivity {
         if(getIntent().getExtras() !=null){
             int planetId = getIntent().getExtras().getInt(KEY_INDEX);
 
-            RetrofitClient.getService().getDetailPlanet(planetId).enqueue(new Callback<List<Details>>() {
+            RetrofitClient.getService().getDetailPlanet(planetId).enqueue(new Callback<Planet>() {
                 @Override
-                public void onResponse(Call<List<Details>> call, Response<List<Details>> response) {
+                public void onResponse(Call<Planet> call, Response<Planet> response) {
                     if(response.isSuccessful()){
-
-                        setPlanetName(details.getName());
-                        setPlanetDescription(details.getDescription());
-                        Glide.with(context).load(details.getImage()).into(planetImage);
+                        planet = response.body();
+                        setPlanetName(planet.getName());
+                        setPlanetDescription(planet.getDescription());
+                        Glide.with(context).load(planet.getImage()).into(planetImage);
                     }
                 }
 
                 @Override
-                public void onFailure(Call<List<Details>> call, Throwable t) {
+                public void onFailure(Call<Planet> call, Throwable t) {
                     t.printStackTrace();
                 }
             });
@@ -61,7 +61,7 @@ public class PlanetDetailsActivity extends AppCompatActivity {
     private void cacheViews(){
         this.planetName = findViewById(R.id.textViewPlanetDetailName);
         this.planetDescription = findViewById(R.id.textViewPlanetDetailDescription);
-        this.planetImage = findViewById(R.id.imageViewPlanetDetail);
+        this.planetImage = findViewById(R.id.imageViewDetail);
     }
 
     public void setPlanetName(String planetName){

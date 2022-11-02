@@ -12,5 +12,5 @@ public interface PlanetsService {
     Call<List<Planet>> getAllPlanets();
 
     @GET("planetDetails/{id}")
-    Call<List<Details>> getDetailPlanet(@Path("id") int planetId);
+    Call<Planet> getDetailPlanet(@Path("id") int planetId);
 }
